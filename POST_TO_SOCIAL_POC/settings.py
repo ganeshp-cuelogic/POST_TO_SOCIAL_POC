@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -37,6 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
+    'thirdauth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,10 +60,15 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.media',
+                'django.core.context_processors.static',
+                'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -100,3 +106,42 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SOCIAL_AUTH_TWITTER_KEY = 'qLIm98N0jAGYuyuV9kdhXKam8'
+SOCIAL_AUTH_TWITTER_SECRET = 'd82tYNxNgWGQapwz1VFlNHsjvoErwzbNaQfYYHSROjkp28r0eU'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '991267737603917'
+SOCIAL_AUTH_FACEBOOK_SECRET = '99ac3c59d275a459b0e7d1f4e0e8ddf8'
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "39094139190-ies6ie3me8c7qhk82qie6vcvm4t5gq9q.apps.googleusercontent.com"
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "CVN-mGkVJwmsVfHkmCtW2YgU"
+
+SOCIAL_AUTH_GOOGLE_OAUTH_KEY = "39094139190-ies6ie3me8c7qhk82qie6vcvm4t5gq9q.apps.googleusercontent.com"
+
+SOCIAL_AUTH_GOOGLE_OAUTH_SECRET = "CVN-mGkVJwmsVfHkmCtW2YgU"
+
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = "39094139190-ies6ie3me8c7qhk82qie6vcvm4t5gq9q.apps.googleusercontent.com"
+
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = "CVN-mGkVJwmsVfHkmCtW2YgU"
+
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged-in/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
+SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
+SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/account-disconnected-redirect-url/'
+SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
